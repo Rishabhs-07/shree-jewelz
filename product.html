@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Product</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="product-page">
+
+<div class="product-gallery">
+<img id="mainImage" class="main-img">
+
+<div class="thumbs" id="thumbs"></div>
+</div>
+
+<div class="product-info">
+
+<h2 id="productName"></h2>
+<p class="price" id="productPrice"></p>
+
+<p class="description" id="productDesc"></p>
+
+<ul class="product-details">
+<li><strong>Material:</strong> 925 Sterling Silver</li>
+<li><strong>Finish:</strong> Premium polish</li>
+<li><strong>Occasion:</strong> Daily / Festive</li>
+</ul>
+
+<div class="care-box">
+<h4>Care Instructions</h4>
+<p>Avoid water, perfumes & chemicals. Store in dry pouch.</p>
+</div>
+
+<div class="return-box">
+<h4>Return Policy</h4>
+<p>7-day easy return.</p>
+</div>
+
+<a id="whatsappLink" class="buy-btn" target="_blank">Order on WhatsApp</a>
+
+</div>
+
+</div>
+
+<script>
+const products = {
+1:{
+name:"Elegant Silver Pendant",
+price:"₹3499",
+desc:"Beautifully crafted 925 sterling silver jewellery designed for everyday elegance.",
+images:["images/pendant1.png","images/pendant2.png","images/pendant3.png"]
+},
+
+2:{
+name:"Heart Silver Pendant",
+price:"₹2999",
+desc:"Premium heart shaped silver pendant for gifting.",
+images:["images/heart1.jpg","images/heart2.jpg","images/heart3.jpg"]
+},
+3:{
+name:"Silver Pendant",
+price:"₹2999",
+desc:"Premium heart shaped silver pendant for giftin.",
+images:["images/heart.jpg","images/heart.jpg","images/heart.jpg"]
+},
+
+4:{
+name:"Heart Silver Pendant",
+price:"₹2999",
+desc:"Premium heart shaped silver pendant for gifting.",
+images:["images/heart1.jpg","images/heart2.jpg","images/heart3.jpg"]
+},
+5:{
+name:"Heart Silver Pendant",
+price:"₹2999",
+desc:"Premium heart shaped silver pendant for gifting.",
+images:["images/heart1.jpg","images/heart2.jpg","images/heart3.jpg"]
+},
+6:{
+name:"Heart Silver Pendant",
+price:"₹2999",
+desc:"Premium heart shaped silver pendant for gifting.",
+images:["images/heart1.jpg","images/heart2.jpg","images/heart3.jpg"]
+},
+7:{
+name:"Heart Silver Pendant",
+price:"₹2999",
+desc:"Premium heart shaped silver pendant for gifting.",
+images:["images/heart1.jpg","images/heart2.jpg","images/heart3.jpg"]
+},
+8:{
+name:"Heart Silver Pendant",
+price:"₹2999",
+desc:"Premium heart shaped silver pendant for gifting.",
+images:["images/heart1.jpg","images/heart2.jpg","images/heart3.jpg"]
+},
+9:{
+name:"Heart Silver Pendant",
+price:"₹2999",
+desc:"Premium heart shaped silver pendant for gifting.",
+images:["images/heart1.jpg","images/heart2.jpg","images/heart3.jpg"]
+},
+10:{
+name:"Heart Silver Pendant",
+price:"₹2999",
+desc:"Premium heart shaped silver pendant for gifting.",
+images:["images/heart1.jpg","images/heart2.jpg","images/heart3.jpg"]
+},
+11:{
+name:"Heart Silver Pendant",
+price:"₹2999",
+desc:"Premium heart shaped silver pendant for gifting.",
+images:["images/heart1.jpg","images/heart2.jpg","images/heart3.jpg"]
+},
+12:{
+name:"Heart Silver Pendant",
+price:"₹2999",
+desc:"Premium heart shaped silver pendant for gifting.",
+images:["images/heart1.jpg","images/heart2.jpg","images/heart3.jpg"]
+},
+13:{
+name:"Heart Silver Pendant",
+price:"₹2999",
+desc:"Premium heart shaped silver pendant for gifting.",
+images:["images/heart1.jpg","images/heart2.jpg","images/heart3.jpg"]
+},
+14:{
+name:"Heart Silver Pendant",
+price:"₹2999",
+desc:"Premium heart shaped silver pendant for gifting.",
+images:["images/heart1.jpg","images/heart2.jpg","images/heart3.jpg"]
+},
+15:{
+name:"Heart Silver Pendant",
+price:"₹2999",
+desc:"Premium heart shaped silver pendant for gifting.",
+images:["images/heart1.jpg","images/heart2.jpg","images/heart3.jpg"]
+},
+16:{
+name:"Heart Silver Pendant",
+price:"₹2999",
+desc:"Premium heart shaped silver pendant for gifting.",
+images:["images/heart1.jpg","images/heart2.jpg","images/heart3.jpg"]
+}
+
+
+};
+
+const id = new URLSearchParams(window.location.search).get("id");
+const product = products[id];
+if(!product){
+  alert("Product not found");
+  window.location.href = "index.html";
+}
+
+document.getElementById("productName").innerText = product.name;
+document.getElementById("productPrice").innerText = product.price;
+document.getElementById("productDesc").innerText = product.desc;
+document.getElementById("mainImage").src = product.images[0];
+
+const thumbs = document.getElementById("thumbs");
+
+product.images.forEach((img,i)=>{
+const t = document.createElement("img");
+t.src = img;
+t.className = "thumb";
+if(i==0) t.classList.add("active");
+t.onclick=()=>{
+document.getElementById("mainImage").src=img;
+document.querySelectorAll(".thumb").forEach(x=>x.classList.remove("active"));
+t.classList.add("active");
+}
+thumbs.appendChild(t);
+});
+
+const productLink = window.location.href;
+const imageLink = window.location.origin + "/" + product.images[0];
+
+const message =
+`Hello, I want to order this product:
+
+${product.name}
+
+Product Link:
+${productLink}
+
+Product Image:
+${imageLink}`;
+
+document.getElementById("whatsappLink").href =
+"https://wa.me/918210880013?text=" + encodeURIComponent(message);
+</script>
+
+</body>
+</html>
